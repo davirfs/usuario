@@ -65,6 +65,7 @@ public class UsuarioMapper {
 
     public EnderecoDTO paraEnderecoDto(Endereco endereco){
         return EnderecoDTO.builder()
+                .id(endereco.getId())
                 .rua(endereco.getRua())
                 .numero(endereco.getNumero())
                 .complemento(endereco.getComplemento())
@@ -80,8 +81,40 @@ public class UsuarioMapper {
 
     public TelefoneDTO paraTelefoneDto(Telefone telefone){
         return TelefoneDTO.builder()
+                .id(telefone.getId())
                 .numero(telefone.getNumero())
                 .ddd(telefone.getDdd())
+                .build();
+    }
+
+    public Usuario updateUsuario(UsuarioDTO usuarioDTO, Usuario usuario){
+        return Usuario.builder()
+                .nome(usuarioDTO.getNome() != null ? usuarioDTO.getNome() : usuario.getNome())
+                .id(usuario.getId())
+                .senha(usuarioDTO.getSenha() != null ? usuarioDTO.getSenha() : usuario.getSenha())
+                .email(usuarioDTO.getEmail() != null ? usuarioDTO.getEmail() : usuario.getEmail())
+                .enderecos(usuario.getEnderecos())
+                .telefones(usuario.getTelefones())
+                .build();
+    }
+
+    public Endereco updateEndereco(EnderecoDTO enderecoDTO, Endereco endereco){
+        return Endereco.builder()
+                .id(endereco.getId())
+                .rua(enderecoDTO.getRua() != null ? enderecoDTO.getRua() : endereco.getRua())
+                .numero(enderecoDTO.getNumero() != null ? enderecoDTO.getNumero() : endereco.getNumero())
+                .complemento(enderecoDTO.getComplemento() != null ? enderecoDTO.getComplemento() : endereco.getComplemento())
+                .cidade(enderecoDTO.getCidade() != null ? enderecoDTO.getCidade() : endereco.getCidade())
+                .estado(enderecoDTO.getEstado() != null ? enderecoDTO.getEstado() : endereco.getEstado())
+                .cep(enderecoDTO.getCep() != null ? enderecoDTO.getCep() : endereco.getCep())
+                .build();
+    }
+
+    public Telefone updateTelefone(TelefoneDTO telefoneDTO, Telefone telefone){
+        return Telefone.builder()
+                .id(telefone.getId())
+                .numero(telefoneDTO.getNumero() != null ? telefoneDTO.getNumero() : telefone.getNumero())
+                .ddd(telefoneDTO.getDdd() != null ? telefoneDTO.getDdd() : telefone.getDdd())
                 .build();
     }
 }
