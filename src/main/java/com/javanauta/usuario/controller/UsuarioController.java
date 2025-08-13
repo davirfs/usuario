@@ -1,9 +1,11 @@
 package com.javanauta.usuario.controller;
 
 import com.javanauta.usuario.business.UsuarioService;
+import com.javanauta.usuario.business.ViaCepService;
 import com.javanauta.usuario.business.dto.EnderecoDTO;
 import com.javanauta.usuario.business.dto.TelefoneDTO;
 import com.javanauta.usuario.business.dto.UsuarioDTO;
+import com.javanauta.usuario.infrastructure.client.ViaCepDTO;
 import com.javanauta.usuario.infrastructure.entity.Usuario;
 import com.javanauta.usuario.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
+    private final ViaCepService viaCepService;
 
 
     @PostMapping
@@ -76,5 +79,10 @@ public class UsuarioController {
     public ResponseEntity<TelefoneDTO> cadastrarTelefone(@RequestBody TelefoneDTO telefoneDTO,
                                                          @RequestHeader("Authorization") String authorization){
         return ResponseEntity.ok(usuarioService.cadastroTelefone(authorization, telefoneDTO));
+    }
+
+    @GetMapping("/endereco/{cep}")
+    public ResponseEntity<ViaCepDTO> buscaDadosEndereco(@PathVariable("cep") String cep){
+        return ResponseEntity.ok(viaCepService.buscaDadosEndereco(cep));
     }
 }
