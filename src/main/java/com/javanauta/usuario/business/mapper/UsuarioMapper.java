@@ -54,8 +54,10 @@ public class UsuarioMapper {
                 .nome(usuario.getNome())
                 .email(usuario.getEmail())
                 .senha(usuario.getSenha())
-                .enderecos(paraListaEnderecoDto(usuario.getEnderecos()))
-                .telefones(paraListaTelefoneDto(usuario.getTelefones()))
+                .enderecos(usuario.getEnderecos() != null ?
+                        paraListaEnderecoDto(usuario.getEnderecos()) : null)
+                .telefones(usuario.getTelefones() != null ?
+                        paraListaTelefoneDto(usuario.getTelefones()) : null)
                 .build();
     }
 
