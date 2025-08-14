@@ -109,6 +109,7 @@ public class UsuarioMapper {
                 .cidade(enderecoDTO.getCidade() != null ? enderecoDTO.getCidade() : endereco.getCidade())
                 .estado(enderecoDTO.getEstado() != null ? enderecoDTO.getEstado() : endereco.getEstado())
                 .cep(enderecoDTO.getCep() != null ? enderecoDTO.getCep() : endereco.getCep())
+                .usuario_id(endereco.getUsuario_id())
                 .build();
     }
 
@@ -117,6 +118,7 @@ public class UsuarioMapper {
                 .id(telefone.getId())
                 .numero(telefoneDTO.getNumero() != null ? telefoneDTO.getNumero() : telefone.getNumero())
                 .ddd(telefoneDTO.getDdd() != null ? telefoneDTO.getDdd() : telefone.getDdd())
+                .usuario_id(telefone.getUsuario_id())
                 .build();
     }
 
